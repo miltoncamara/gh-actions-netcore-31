@@ -9,7 +9,10 @@ on:
       - master
 jobs:
   build:
-    runs-on: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
     steps:
     - name: Baixar o Código Fonte
       uses: actions/checkout@v2
