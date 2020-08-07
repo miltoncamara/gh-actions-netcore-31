@@ -1,4 +1,4 @@
-name: .NET Core Example
+name: .NET Core 31 Example - Manual
 
 on: 
   workflow_dispatch:
