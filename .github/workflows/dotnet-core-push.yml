@@ -9,7 +9,7 @@ on:
       - master
 jobs:
   build:
-    runs-on: [ubuntu-latest, ubuntu-18.04, ubuntu-16.04, windows-latest, windows-2019, macos-latest]
+    runs-on: [ubuntu-latest, windows-latest, macos-latest]
     steps:
     - name: Baixar o Código Fonte
       uses: actions/checkout@v2
