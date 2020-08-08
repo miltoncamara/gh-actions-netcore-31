@@ -9,18 +9,21 @@ on:
       - master
 jobs:
   build:
+    name: Build Code
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [macos-latest, ubuntu-latest, windows-latest]
         dotnet: ['3.1.100','3.1.101','3.1.200','3.1.301']
-    steps:
+    steps:    
     - name: Baixar o Código Fonte
       uses: actions/checkout@v2
+    
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: ${{ matrix.dotnet }}
+    
     - name: Install dependencies
       run: dotnet restore
       
@@ -41,3 +44,19 @@ jobs:
         name: App_${{ matrix.os }}_${{ matrix.dotnet }}
         # A file, directory or wildcard pattern that describes what to upload
         path: dotnetcorewebapp
+  deploy:
+    name: Deploy App
+    runs-on: ubuntu-latest
+    needs: [build]
+    steps:
+      - name: Login no Azure
+        uses: Azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      
+      - name: Deploy Azure App Service
+        uses: Azure/webapps-deploy@v2
+        with:
+          app-name: gha-teste-01
+          package: App_ubuntu-latest_3.1.301
+  
