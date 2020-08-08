@@ -10,7 +10,7 @@ on:
 jobs:
   build:
     name: Build Code
-    runs-on: {{ matrix.os }}
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [macos-latest, ubuntu-latest, windows-latest]
