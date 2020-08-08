@@ -59,11 +59,11 @@ jobs:
       - name: Download a Build Artifact
         uses: actions/download-artifact@v2
         with:
-          name: App_ubuntu-latest_3.1.301
+          name: App_ubuntu-latest_3.1.100
           
       - name: Deploy Azure App Service
         uses: Azure/webapps-deploy@v2
         with:
           app-name: gha-teste-01
-          package: App_ubuntu-latest_3.1.301
+          package: App_ubuntu-latest_3.1.100
   
