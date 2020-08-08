@@ -65,5 +65,5 @@ jobs:
         uses: Azure/webapps-deploy@v2
         with:
           app-name: gha-teste-01
-          package: App_ubuntu-latest_3.1.100
+          package: .
   
