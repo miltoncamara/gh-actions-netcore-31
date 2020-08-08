@@ -13,8 +13,10 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-latest, windows-latest]
-        dotnet: ['3.1.100','3.1.101','3.1.200','3.1.301']
+        #os: [macos-latest, ubuntu-latest, windows-latest]
+        #dotnet: ['3.1.100','3.1.101','3.1.200','3.1.301']
+        os: [ubuntu-latest]
+        dotnet: ['3.1.100']
     steps:    
     - name: Baixar o Código Fonte
       uses: actions/checkout@v2
@@ -54,6 +56,11 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
       
+      - name: Download a Build Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: App_ubuntu-latest_3.1.301
+          
       - name: Deploy Azure App Service
         uses: Azure/webapps-deploy@v2
         with:
